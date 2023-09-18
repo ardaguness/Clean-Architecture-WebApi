@@ -7,12 +7,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class Product:BaseEntity
+    public class Category:BaseEntity
     {
         public string Name { get; set; }
-        public double Price { get; set; }
-        public bool IsActive { get; set; }
-        public int Stock { get; set; }
-        public Category Category { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }
