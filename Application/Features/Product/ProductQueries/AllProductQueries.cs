@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Product.ProductQueries
+namespace Application.Features
 {
     public class GetProducts : IRequest<GetProductsResponse>
     {
@@ -14,5 +14,14 @@ namespace Application.Features.Product.ProductQueries
     public class GetProductsResponse
     {
         public object Products { get; set; }
+    }
+
+    public class GetProductById : IRequest<GetProductByIdResponse>
+    {
+        public string ProductId { get; set; }
+    }
+    public class GetProductByIdResponse
+    {
+        public object Product { get; set; }
     }
 }

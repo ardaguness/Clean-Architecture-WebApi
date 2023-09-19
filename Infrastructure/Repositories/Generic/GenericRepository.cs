@@ -81,9 +81,9 @@ namespace Infrastructure.Repositories
 
         public async Task<T> GetByIdAsync(string id, bool tracking = true)
         {
-            if (Guid.TryParse(id, out Guid entityId))
+            if (id!=null)
             {
-                var query = GetAll(tracking).Where(e => e.Id == entityId);
+                var query = GetAll(tracking).Where(e => e.Id == id);
                 return await query.FirstOrDefaultAsync();
             }
             return null;

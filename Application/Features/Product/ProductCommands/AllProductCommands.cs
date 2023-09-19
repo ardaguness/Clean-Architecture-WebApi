@@ -7,12 +7,41 @@ using System.Threading.Tasks;
 
 namespace Application.Features.Product.ProductCommands
 {
-    public class GetProducts:IRequest<GetProductsResponse>
+    public class CreateProduct:IRequest<CreateProductResponse>
+    {
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public bool IsActive { get; set; }
+        public int Stock { get; set; }
+        public string CategoryId { get; set; }
+
+    }
+    public class CreateProductResponse
     {
         
     }
-    public class GetProductsResponse
+
+    public class UpdateProduct : IRequest<UpdateProductResponse>
     {
-        public object Products { get; set; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public bool IsActive { get; set; }
+        public int Stock { get; set; }
+        public string CategoryId { get; set; }
+
+    }
+    public class UpdateProductResponse
+    {
+
+    }
+
+    public class DeleteCommand : IRequest<DeleteCommandResponse>
+    {
+        public string Id { get; set; }
+    }
+    public class DeleteCommandResponse
+    {
+
     }
 }

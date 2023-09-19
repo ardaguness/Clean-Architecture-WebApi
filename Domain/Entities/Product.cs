@@ -13,6 +13,6 @@ namespace Domain.Entities
         public double Price { get; set; }
         public bool IsActive { get; set; }
         public int Stock { get; set; }
-        public Category Category { get; set; }
+        public string CategoryId { get; set; }
     }
 }

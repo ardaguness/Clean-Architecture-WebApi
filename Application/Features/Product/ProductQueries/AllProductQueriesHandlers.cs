@@ -6,10 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Features.Product.ProductQueries
+namespace Application.Features
 {
     public class AllProductQueriesHandlers :
-       IRequestHandler<GetProducts, GetProductsResponse>
+       IRequestHandler<GetProducts, GetProductsResponse>,
+       IRequestHandler<GetProductById, GetProductByIdResponse>
     {
         readonly IProductRepository _productRepo;
 
@@ -20,8 +21,14 @@ namespace Application.Features.Product.ProductQueries
 
         public async Task<GetProductsResponse> Handle(GetProducts request, CancellationToken cancellationToken)
         {
-            var products = _productRepo.GetAll();
+            var products = _productRepo.GetAll().ToList();
             return new() { Products = products };
+        }
+
+        public async Task<GetProductByIdResponse> Handle(GetProductById request, CancellationToken cancellationToken)
+        {
+            var product = await _productRepo.GetByIdAsync(request.ProductId);
+            return new() { Product = product };
         }
     }
 }

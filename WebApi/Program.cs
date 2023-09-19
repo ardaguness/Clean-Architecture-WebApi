@@ -3,25 +3,25 @@ using Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
-
-
-builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
-    policy.WithOrigins("http://localhost:4200", "http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
-));
-
-
-var app = builder.Build();
+builder.Services.AddMapperServices();
 
 var appDataFolder = Path.Combine(builder.Environment.ContentRootPath, "Database");
 AppDomain.CurrentDomain.SetData("DataDirectory", appDataFolder);
+
+
+
+//builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
+//    policy.WithOrigins("http://localhost:4200", "http://localhost:4200").AllowAnyHeader().AllowAnyMethod()
+//));
+
+builder.Services.AddControllers();
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -31,6 +31,8 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+
+app.UseStaticFiles();
 
 app.UseAuthorization();
 

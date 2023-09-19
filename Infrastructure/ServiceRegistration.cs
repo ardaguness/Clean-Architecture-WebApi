@@ -16,8 +16,8 @@ namespace Infrastructure
         public static void AddInfrastructureServices(this IServiceCollection services)
         {
             services.AddDbContext<EFDBContext>(options => options.UseSqlite(Configuration.ConnectionString));
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
         }
     }
 }
