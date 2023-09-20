@@ -16,6 +16,15 @@ namespace Application.Features
         public object Products { get; set; }
     }
 
+    public class GetProductsByCategoryId : IRequest<GetProductsByCategoryIdResponse>
+    {
+        public string CategoryId { get; set; }
+    }
+    public class GetProductsByCategoryIdResponse
+    {
+        public object Products { get; set; }
+    }
+
     public class GetProductById : IRequest<GetProductByIdResponse>
     {
         public string ProductId { get; set; }

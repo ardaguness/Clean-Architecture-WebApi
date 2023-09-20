@@ -30,8 +30,9 @@ namespace Application.Features.Product.ProductCommands
         {
             var product = _mapper.Map<Domain.Entities.Product>(request);
 
-            var updatedProduct = _productRepo.Update(product);
-            return new UpdateProductResponse();
+            var is_updated = _productRepo.Update(product);
+
+            return new UpdateProductResponse() { ResponseMsg = is_updated ? "Success" : "Error"};
         }
 
         public async Task<CreateProductResponse> Handle(CreateProduct request, CancellationToken cancellationToken)

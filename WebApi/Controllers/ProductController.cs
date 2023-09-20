@@ -17,10 +17,17 @@ namespace WebApi.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetProducts")]
         public async Task<IActionResult> ProductList([FromQuery] GetProducts query)
         {
             GetProductsResponse response = await _mediator.Send(query);
+            return Ok(response);
+        }
+
+        [HttpGet("GetProductsByCategoryId")]
+        public async Task<IActionResult> GetProductsByCategoryId([FromQuery] GetProductsByCategoryId query)
+        {
+            GetProductsByCategoryIdResponse response = await _mediator.Send(query);
             return Ok(response);
         }
 
@@ -30,6 +37,7 @@ namespace WebApi.Controllers
             GetProductByIdResponse response = await _mediator.Send(query);
             return Ok(response);
         }
+        
         [HttpPost("CreateProduct")]
         public async Task<IActionResult> CreateProduct([FromBody] CreateProduct query)
         {

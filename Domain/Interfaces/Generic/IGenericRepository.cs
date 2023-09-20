@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Entities.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Interfaces.Generic
 {
-    public interface IGenericRepository<T> where T : class
+    public interface IGenericRepository<T> where T : BaseEntity
     {
         Task<bool> AddAsync(T model);
         Task<bool> AddRangeAsync(List<T> datas);

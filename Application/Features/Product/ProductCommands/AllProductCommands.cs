@@ -29,11 +29,12 @@ namespace Application.Features.Product.ProductCommands
         public bool IsActive { get; set; }
         public int Stock { get; set; }
         public string CategoryId { get; set; }
+        public DateTime? Date { get; set; } = DateTime.Now;
 
     }
     public class UpdateProductResponse
     {
-
+        public string ResponseMsg { get; set; }
     }
 
     public class DeleteCommand : IRequest<DeleteCommandResponse>

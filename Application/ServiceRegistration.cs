@@ -1,4 +1,5 @@
-﻿using Application.Features.Product.ProductCommands;
+﻿using Application.Features.Category.CategoryQueries;
+using Application.Features.Product.ProductCommands;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
@@ -17,8 +18,9 @@ namespace Application
         {
             public RegisterMapper()
             {
-                CreateMap<CreateProduct, Category>();
+                CreateMap<CreateProduct, Product>();
                 CreateMap<UpdateProduct, Product>();
+                CreateMap<Category, GetCategoriesMapper>();
             }
         }
         public static void AddMapperServices(this IServiceCollection services)

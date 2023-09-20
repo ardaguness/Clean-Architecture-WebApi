@@ -10,7 +10,7 @@ namespace Domain.Entities.Common
     public class BaseEntity
     {
         [Key]
-        public string Id { get; set; }
+        public string Id { get; set; } = System.Guid.NewGuid().ToString();
         public DateTime? Date { get; set; } = DateTime.Now;
     }
 }

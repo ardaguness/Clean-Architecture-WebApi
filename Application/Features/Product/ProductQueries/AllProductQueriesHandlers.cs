@@ -10,7 +10,8 @@ namespace Application.Features
 {
     public class AllProductQueriesHandlers :
        IRequestHandler<GetProducts, GetProductsResponse>,
-       IRequestHandler<GetProductById, GetProductByIdResponse>
+       IRequestHandler<GetProductById, GetProductByIdResponse>,
+       IRequestHandler<GetProductsByCategoryId, GetProductsByCategoryIdResponse>
     {
         readonly IProductRepository _productRepo;
 
@@ -29,6 +30,12 @@ namespace Application.Features
         {
             var product = await _productRepo.GetByIdAsync(request.ProductId);
             return new() { Product = product };
+        }
+
+        public async Task<GetProductsByCategoryIdResponse> Handle(GetProductsByCategoryId request, CancellationToken cancellationToken)
+        {
+            var products = _productRepo.GetProductsByCategoryId(request.CategoryId);
+            return new() { Products = products };
         }
     }
 }
