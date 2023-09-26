@@ -23,7 +23,7 @@
 - Serilog
 - Serilog.Sinks.File
 - Microsoft.AspNetCore.Mvc.Version
-- 
+  
 ## Getting Started
 
 To run the project on your local machine, you can follow the steps below:
