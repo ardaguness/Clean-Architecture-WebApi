@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using static Application.Features.Account.AccountCommands.AccountCommands;
 
 [ApiController]
+[ApiVersion("2.0")]
 [Route("api/[controller]")]
 public class AccountController : ControllerBase
 {

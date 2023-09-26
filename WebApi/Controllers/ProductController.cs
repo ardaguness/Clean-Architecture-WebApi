@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi.Controllers
 {
     [Route("api/[controller]")]
+    [ApiVersion("2.0")]
     [ApiController]
     public class ProductController : ControllerBase
     {
