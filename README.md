@@ -8,6 +8,9 @@
 - Entity Framework Core CRUD Operations
 - Repository Design
 - SQLite Database
+- ASP.NET CORE Identity
+- Authentication
+- Identity
 
 ## Packages Used
 
