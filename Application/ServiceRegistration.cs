@@ -2,6 +2,7 @@
 using Application.Features.Product.ProductCommands;
 using AutoMapper;
 using Domain.Entities;
+using Domain.Entities.Identity;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Application.Features.Account.AccountCommands.AccountCommands;
 
 namespace Application
 {
@@ -20,6 +22,7 @@ namespace Application
             {
                 CreateMap<CreateProduct, Product>();
                 CreateMap<UpdateProduct, Product>();
+                CreateMap<RegisterCommand, RegisterUser>();
                 CreateMap<Category, GetCategoriesMapper>();
             }
         }

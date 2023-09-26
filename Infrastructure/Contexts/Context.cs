@@ -6,14 +6,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Entities.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Infrastructure.Contexts
 {
-    public class EFDBContext : DbContext
+    public class EFDBContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
-        public EFDBContext(DbContextOptions options) : base(options)
-        { }
-
+        public EFDBContext(DbContextOptions options) : base(options) { }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
 

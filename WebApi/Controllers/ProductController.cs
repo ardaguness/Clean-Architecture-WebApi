@@ -51,7 +51,7 @@ namespace WebApi.Controllers
             return Ok(response);
         }
         [HttpDelete("RemoveProduct")]
-        public async Task<IActionResult> GetProductById([FromQuery] DeleteCommand query)
+        public async Task<IActionResult> RemoveProduct([FromQuery] DeleteCommand query)
         {
             DeleteCommandResponse response = await _mediator.Send(query);
             return Ok(response);
