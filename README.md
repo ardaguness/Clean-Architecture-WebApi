@@ -11,13 +11,19 @@
 - ASP.NET CORE Identity
 - Authentication
 - Identity
+- AspNetCoreRateLimit using
+- Serilog using
 
 ## Packages Used
 
 - Mediatr
 - AutoMapper
 - Entity Framework Core
-
+- AspNetCoreRateLimit
+- Serilog
+- Serilog.Sinks.File
+- Microsoft.AspNetCore.Mvc.Version
+  
 ## Getting Started
 
 To run the project on your local machine, you can follow the steps below:
