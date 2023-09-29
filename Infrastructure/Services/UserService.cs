@@ -23,6 +23,11 @@ namespace Infrastructure.Services
             db = context;
         }
 
+        public async Task<ICollection<ApplicationUser>> GetAllUsersAsync()
+        {
+            return await db.Users.ToListAsync();
+        }
+
         public async Task<ApplicationUser> GetUserById(string userid)
         {
             var user = await db.Users.FirstOrDefaultAsync(i => i.Id == userid);

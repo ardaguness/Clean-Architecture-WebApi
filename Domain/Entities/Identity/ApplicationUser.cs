@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using Microsoft.AspNetCore.Identity;
-
-
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Domain.Entities.Identity
 {

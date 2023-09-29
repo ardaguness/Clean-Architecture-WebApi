@@ -34,6 +34,7 @@ public class AuthService : IAuthService
     {
         var user = new ApplicationUser
         {
+            Id = System.Guid.NewGuid().ToString(),
             UserName = model.Username,
             Email = model.Email,
             Name = model.Name,

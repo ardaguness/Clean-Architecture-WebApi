@@ -10,5 +10,6 @@ namespace Domain.Interfaces
     public interface IUserService
     {
         Task<ApplicationUser> GetUserById(string userid);
+        Task<ICollection<ApplicationUser>> GetAllUsersAsync();
     }
 }

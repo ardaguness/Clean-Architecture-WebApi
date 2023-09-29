@@ -22,12 +22,20 @@ public class AccountController : ControllerBase
         return Ok(response);
     }
 
-    //[HttpPost("login")]
-    //public async Task<IActionResult> Login(LoginCommand command)
-    //{
-    //    LoginCommandResponse response = await _mediator.Send(command);
-    //    return Ok(response);
-    //}
+    [HttpPost("login")]
+    public async Task<IActionResult> Login(LoginCommand command)
+    {
+        LoginCommandResponse response = await _mediator.Send(command);
+        return Ok(response);
+    }
+
+    [HttpGet("GetAllUsers")]
+    public async Task<IActionResult> GetMUserById([FromQuery] GetAllUsers query)
+    {
+        GetAllUsersResponse response = await _mediator.Send(query);
+        return Ok(response);
+    }
+
 
     [HttpGet("GetUserById")]
     public async Task<IActionResult> GetMUserById([FromQuery] GetUserById query)
@@ -35,4 +43,5 @@ public class AccountController : ControllerBase
         GetUserByIdResponse response = await _mediator.Send(query);
         return Ok(response);
     }
+
 }

@@ -15,4 +15,13 @@ namespace Application.Features.Account.AccountQueries
     {
         public object User { get; set; }
     }
+
+    public class GetAllUsers:IRequest<GetAllUsersResponse>
+    {
+
+    }
+    public class GetAllUsersResponse
+    {
+        public object Users { get; set; }
+    }
 }

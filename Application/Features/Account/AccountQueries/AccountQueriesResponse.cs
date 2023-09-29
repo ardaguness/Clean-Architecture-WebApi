@@ -11,7 +11,8 @@ using static Application.Features.Account.AccountCommands.AccountCommands;
 namespace Application.Features.Account.AccountQueries
 {
     public class AccountQueriesResponse :
-        IRequestHandler<GetUserById, GetUserByIdResponse>
+        IRequestHandler<GetUserById, GetUserByIdResponse>,
+        IRequestHandler<GetAllUsers, GetAllUsersResponse>
     {
         private readonly IUserService _userService;
         private readonly IMapper _mapper;
@@ -26,6 +27,11 @@ namespace Application.Features.Account.AccountQueries
         {
             var user = _userService.GetUserById(request.UserId);
             return new() { User = user };
+        }
+
+        public async Task<GetAllUsersResponse> Handle(GetAllUsers request, CancellationToken cancellationToken)
+        {
+            return new() { Users = _userService.GetAllUsersAsync() };
         }
     }
 }

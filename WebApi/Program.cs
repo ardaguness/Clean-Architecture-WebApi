@@ -62,7 +62,11 @@ app.UseMiddleware<ErrorHandlingMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    // version 2.0 start configuration
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v2/swagger.json", "Clean-Architecture-WebApi v2");
+    });
 }
 
 //app.UseHttpsRedirection();
