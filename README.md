@@ -13,6 +13,8 @@
 - Identity
 - AspNetCoreRateLimit using
 - Serilog using
+- SignalR
+- SignalR Notification
 
 ## Packages Used
 
@@ -23,6 +25,7 @@
 - Serilog
 - Serilog.Sinks.File
 - Microsoft.AspNetCore.Mvc.Version
+- Microsoft.AspNetCore.SignalR
   
 ## Getting Started
 
