@@ -32,6 +32,7 @@ namespace Infrastructure
             services.AddDbContext<EFDBContext>(options => options.UseSqlite(Configuration.ConnectionString));
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<IAuthService, AuthService>();
             services.AddTransient<IUserService, UserService>();
         }
