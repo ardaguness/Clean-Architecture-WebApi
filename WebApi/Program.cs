@@ -5,17 +5,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using WebApi;
+using WebApi.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddMapperServices();
+builder.Services.AddSignalRServices();
 
 var appDataFolder = Path.Combine(builder.Environment.ContentRootPath, "Database");
 AppDomain.CurrentDomain.SetData("DataDirectory", appDataFolder);
-
-
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
     policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod()
@@ -75,8 +75,12 @@ app.UseAuthentication();
 
 app.UseStaticFiles();
 
+app.UseCors();
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHubs();
 
 app.Run();
