@@ -1,4 +1,5 @@
 ﻿using Application.Features.Category.CategoryQueries;
+using Application.Features.Order.OrderCommands;
 using Application.Features.Product.ProductCommands;
 using AutoMapper;
 using Domain.Entities;
@@ -20,10 +21,18 @@ namespace Application
         {
             public RegisterMapper()
             {
+                // Product Mapeprs
                 CreateMap<CreateProduct, Product>();
                 CreateMap<UpdateProduct, Product>();
+                // Auth Mappers
                 CreateMap<RegisterCommand, RegisterUser>();
+                // Category Mappers
                 CreateMap<Category, GetCategoriesMapper>();
+                // Order Mappers
+                //CreateMap<CreateOrder, Order>()
+                //      .ForMember(dest => dest.Products, opt => opt.Ignore())
+                //      .ForSourceMember(src => src.ProductIds, opt => opt.DoNotValidate());
+ 
             }
         }
         public static void AddMapperServices(this IServiceCollection services)

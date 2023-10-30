@@ -46,19 +46,29 @@ namespace WebApi.Controllers
         public async Task<IActionResult> CreateProduct([FromBody] CreateProduct query)
         {
             CreateProductResponse response = await _mediator.Send(query);
+<<<<<<< Updated upstream
+=======
+            await _productHubService.ProductAddedMessageAsync($"Product named {query.Name} has been added.");
+>>>>>>> Stashed changes
             return StatusCode((int)HttpStatusCode.Created);
         }
+
         [HttpPut("UpdateProduct")]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProduct query)
         {
             UpdateProductResponse response = await _mediator.Send(query);
+<<<<<<< Updated upstream
             await _productHubService.ProductAddedMessageAsync($"{query.Name} isminde ürün eklenmiştir.");
+=======
+            await _productHubService.ProductAddedMessageAsync($"Product named {query.Name} has been updated.");
+>>>>>>> Stashed changes
             return Ok(response);
         }
         [HttpDelete("RemoveProduct")]
         public async Task<IActionResult> RemoveProduct([FromQuery] DeleteCommand query)
         {
             DeleteCommandResponse response = await _mediator.Send(query);
+            await _productHubService.ProductAddedMessageAsync($"Product with id {query.Id} removed.");
             return Ok(response);
         }
     }
