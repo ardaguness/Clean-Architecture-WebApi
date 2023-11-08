@@ -17,10 +17,6 @@ builder.Services.AddSignalRServices();
 var appDataFolder = Path.Combine(builder.Environment.ContentRootPath, "Database");
 AppDomain.CurrentDomain.SetData("DataDirectory", appDataFolder);
 
-<<<<<<< Updated upstream
-=======
-// CORS
->>>>>>> Stashed changes
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
     policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod()
 ));
@@ -89,20 +85,13 @@ app.UseStaticFiles();
 
 app.UseCors();
 
-<<<<<<< Updated upstream
-=======
-// MiniProfiler Usage
+
 app.UseMiniProfiler();  
 
->>>>>>> Stashed changes
 app.UseAuthorization();
 
 app.MapControllers();
 
-<<<<<<< Updated upstream
-=======
-// SignalR Hubs Configuration
->>>>>>> Stashed changes
 app.MapHubs();
 
 app.Run();

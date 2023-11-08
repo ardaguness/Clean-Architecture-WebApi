@@ -9,5 +9,7 @@ namespace WebApi.SignalR.HubServices
     public interface IProductHubService
     {
         Task ProductAddedMessageAsync(string message);
+        Task ProductUpdatedMessageAsync(string message);
+        Task ProductRemovedMessageAsync(string message);
     }
 }

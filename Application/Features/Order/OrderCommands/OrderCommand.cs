@@ -12,10 +12,10 @@ namespace Application.Features.Order.OrderCommands
         public string CustomerId { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
-        public ICollection<object> Products { get; set; }
+        public ICollection<string> ProductIds { get; set; }
     }
     public class CreateOrderResponse
     {
-        
+        public string OrderId { get; set; }
     }
 }

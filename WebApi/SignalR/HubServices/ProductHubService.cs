@@ -21,5 +21,13 @@ namespace WebApi.SignalR.HubServices
         {
             await _hubContext.Clients.All.SendAsync(ReceiveFunctionNames.ProductAddedMessage, message);
         }
+        public async Task ProductUpdatedMessageAsync(string message)
+        {
+            await _hubContext.Clients.All.SendAsync(ReceiveFunctionNames.ProductAddedMessage, message);
+        }
+        public async Task ProductRemovedMessageAsync(string message)
+        {
+            await _hubContext.Clients.All.SendAsync(ReceiveFunctionNames.ProductAddedMessage, message);
+        }
     }
 }

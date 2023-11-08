@@ -3,6 +3,8 @@ using Application.Features;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Application.Features.Order.OrderCommands;
+using System.Net;
 
 namespace WebApi.Controllers
 {
@@ -23,6 +25,13 @@ namespace WebApi.Controllers
         public async Task<IActionResult> GetOrders([FromQuery] GetOrders query)
         {
             GetOrdersResponse response = await _mediator.Send(query);
+            return StatusCode((int)HttpStatusCode.Created);
+        }
+
+        [HttpPost("CreateOrder")]
+        public async Task<IActionResult> CreateOrder([FromQuery] CreateOrder command)
+        {
+            CreateOrderResponse response = await _mediator.Send(command);
             return Ok(response);
         }
     }
