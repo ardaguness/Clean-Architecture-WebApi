@@ -30,7 +30,7 @@ public class AccountController : ControllerBase
     }
 
     [HttpGet("GetAllUsers")]
-    public async Task<IActionResult> GetMUserById([FromQuery] GetAllUsers query)
+    public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsers query)
     {
         GetAllUsersResponse response = await _mediator.Send(query);
         return Ok(response);
@@ -38,7 +38,7 @@ public class AccountController : ControllerBase
 
 
     [HttpGet("GetUserById")]
-    public async Task<IActionResult> GetMUserById([FromQuery] GetUserById query)
+    public async Task<IActionResult> GetUserById([FromQuery] GetUserById query)
     {
         GetUserByIdResponse response = await _mediator.Send(query);
         return Ok(response);

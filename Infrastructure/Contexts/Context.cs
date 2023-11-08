@@ -16,6 +16,7 @@ namespace Infrastructure.Contexts
         public EFDBContext(DbContextOptions options) : base(options) { }
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Order> Order { get; set; }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {

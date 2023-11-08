@@ -11,5 +11,6 @@ namespace Domain.Interfaces
     public interface IProductRepository : IGenericRepository<Product>
     {
         Task<ICollection<Product>> GetProductsByCategoryId(string CategoryId);
+        Task<ICollection<Product>> GetProductsByIds(ICollection<string> productIds);
     }
 }

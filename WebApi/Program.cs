@@ -5,22 +5,23 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using WebApi;
+using WebApi.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructureServices();
 builder.Services.AddApplicationServices();
 builder.Services.AddMapperServices();
+builder.Services.AddSignalRServices();
 
 var appDataFolder = Path.Combine(builder.Environment.ContentRootPath, "Database");
 AppDomain.CurrentDomain.SetData("DataDirectory", appDataFolder);
-
-
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(policy =>
     policy.WithOrigins("*").AllowAnyHeader().AllowAnyMethod()
 ));
 
+// Version
 builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v2", new OpenApiInfo { Title = "Clean-Architecture-WebApi", Version = "v2" });
@@ -43,6 +44,13 @@ builder.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounte
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
 
+// MiniProfiler Settings
+builder.Services.AddMiniProfiler(options =>
+{
+    options.RouteBasePath = "/profiler"; 
+}).AddEntityFramework();
+
+
 // Serilog Using
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Error()
@@ -62,7 +70,7 @@ app.UseMiddleware<ErrorHandlingMiddleware>();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    // version 2.0 start configuration
+    // Version 2.0 start configuration
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v2/swagger.json", "Clean-Architecture-WebApi v2");
@@ -75,8 +83,15 @@ app.UseAuthentication();
 
 app.UseStaticFiles();
 
+app.UseCors();
+
+
+app.UseMiniProfiler();  
+
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapHubs();
 
 app.Run();

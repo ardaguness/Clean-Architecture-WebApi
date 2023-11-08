@@ -2,6 +2,8 @@
 using Application.Features.Product.ProductCommands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using WebApi.SignalR.HubServices;
 
 namespace WebApi.Controllers
 {
@@ -11,10 +13,11 @@ namespace WebApi.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IMediator _mediator;
-
-        public ProductController(IMediator mediator)
+        readonly IProductHubService _productHubService;
+        public ProductController(IMediator mediator, IProductHubService productHubService)
         {
             _mediator = mediator;
+            _productHubService = productHubService;
         }
 
 
@@ -43,18 +46,28 @@ namespace WebApi.Controllers
         public async Task<IActionResult> CreateProduct([FromBody] CreateProduct query)
         {
             CreateProductResponse response = await _mediator.Send(query);
-            return Ok(response);
+
+            await _productHubService.ProductAddedMessageAsync($"Product named {query.Name} has been added.");
+
+            return StatusCode((int)HttpStatusCode.Created);
         }
+
         [HttpPut("UpdateProduct")]
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProduct query)
         {
             UpdateProductResponse response = await _mediator.Send(query);
+
+            await _productHubService.ProductAddedMessageAsync($"{query.Name} isminde ürün eklenmiştir.");
+
+            await _productHubService.ProductAddedMessageAsync($"Product named {query.Name} has been updated.");
+
             return Ok(response);
         }
         [HttpDelete("RemoveProduct")]
         public async Task<IActionResult> RemoveProduct([FromQuery] DeleteCommand query)
         {
             DeleteCommandResponse response = await _mediator.Send(query);
+            await _productHubService.ProductAddedMessageAsync($"Product with id {query.Id} removed.");
             return Ok(response);
         }
     }

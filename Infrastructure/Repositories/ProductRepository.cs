@@ -19,10 +19,9 @@ namespace Infrastructure.Repositories
             db = context;
         }
 
-        public async Task<ICollection<Product>> GetProductsByCategoryId(string CategoryId)
-        {
-            var products = await db.Products.Where(i => i.CategoryId == CategoryId).ToListAsync();
-            return products;
-        }
+        public async Task<ICollection<Product>> GetProductsByCategoryId(string CategoryId) => await db.Products.Where(i => i.CategoryId == CategoryId).ToListAsync();
+        
+
+        public async Task<ICollection<Product>> GetProductsByIds(ICollection<string> productIds) => await db.Products.Where(p => productIds.Contains(p.Id)).ToListAsync();
     }
 }
